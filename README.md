@@ -1,57 +1,66 @@
+
 # Task Manager
 
-Simple task management REST API with a static frontend. This repository contains a small Express + MongoDB backend and a static `public/` frontend that interacts with the API.
+Task Manager is a small practice project that demonstrates a CRUD REST API built with Express and MongoDB, plus a minimal static frontend served from `public/`.
 
-**Quick Summary**
-- **Purpose:**: demo CRUD API for tasks and minimal browser UI.
-- **Backend entry:**: [src/index.js](src/index.js#L1)
-- **Frontend:**: static files served from `public/` (served by the server).
+## Features
 
-**Project Structure**
-- **`src/`**: application source (controllers, routes, models, middleware).
-- **`public/`**: static frontend (HTML, CSS, browser JS).
-- **`.env.example`**: example environment variables.
-- **`package.json`**: scripts and dependencies.
+- Create, read, update, and delete tasks
+- Minimal static frontend that consumes the API
+- Error handling middleware and a reusable async wrapper
 
-**Requirements**
-- **Node.js**: v16 or newer recommended.
-- **MongoDB**: a MongoDB URI (Atlas or local).
+## Tech Stack
 
-**Environment**
-- Copy `.env.example` to `.env` and fill values:
+- Node.js + Express
+- MongoDB (Mongoose)
+- Vanilla HTML/CSS/JS for the frontend
+- Nodemon for development
+
+## Requirements
+
+- Node.js (v16+ recommended)
+- npm
+- A MongoDB URI (Atlas or local)
+
+## Setup
+
+1. Copy the example env file and set your MongoDB connection string:
 
 ```bash
 cp .env.example .env
-# edit .env and set MONGO_URI
+# then open .env and set MONGO_URI
 ```
 
-- The important variable is `MONGO_URI` (see `.env.example`).
+Example `MONGO_URI` values:
 
-**Install & Run**
-- Install dependencies:
+- Local MongoDB: `mongodb://localhost:27017/task-manager`
+- Atlas (replace user/password): `mongodb+srv://<user>:<pass>@cluster0.mongodb.net/mydb?retryWrites=true&w=majority`
+
+2. Install dependencies:
 
 ```bash
 npm install
 ```
 
-- Start the app in development (uses `nodemon`):
+3. Start the app (development):
 
 ```bash
 npm start
 ```
 
-- By default the server listens on the `PORT` value from `.env` (or `5000`).
+The server listens on the `PORT` environment variable or `5000` by default.
 
-**API**
-- Base path: `/api/v1/tasks`
-- Endpoints:
-  - `GET /api/v1/tasks` — list tasks
-  - `POST /api/v1/tasks` — create a task (JSON: `{ "name": "..." }`)
-  - `GET /api/v1/tasks/:id` — get single task
-  - `PATCH /api/v1/tasks/:id` — update task
-  - `DELETE /api/v1/tasks/:id` — delete task
+## API
 
-Example using `curl` (create a task):
+Base path: `/api/v1/tasks`
+
+- `GET /api/v1/tasks` — list all tasks
+- `POST /api/v1/tasks` — create a task (JSON body: `{ "name": "..." }`)
+- `GET /api/v1/tasks/:id` — get a single task
+- `PATCH /api/v1/tasks/:id` — update a task
+- `DELETE /api/v1/tasks/:id` — delete a task
+
+Example `curl` (create task):
 
 ```bash
 curl -X POST http://localhost:5000/api/v1/tasks \
@@ -59,9 +68,21 @@ curl -X POST http://localhost:5000/api/v1/tasks \
   -d '{"name":"Buy milk"}'
 ```
 
-**Frontend**
-- Open a browser to `http://localhost:5000/` to use the static UI in `public/index.html`.
+## Frontend
 
-**Notes & Next steps**
-- Add a `.gitignore` to exclude `.env` and `node_modules` if not present.
-- Consider adding tests in a `tests/` folder and a `README` section for contribution guidelines.
+Open `http://localhost:5000/` in your browser to use the UI in `public/index.html`.
+
+## Troubleshooting
+
+- If the server exits with an error on start, check that `MONGO_URI` is set and reachable. Common fixes:
+  - Start a local MongoDB instance or use MongoDB Atlas
+  - Ensure credentials in `MONGO_URI` are correct
+  - Check network/whitelist settings when using Atlas
+
+## Next Steps / Learning Suggestions
+
+- Add a `.gitignore` (exclude `.env`, `node_modules`)
+- Add tests with Jest + Supertest for the API
+- Add a small seed script to populate sample tasks
+- Explore MongoDB Atlas for a managed DB experience
+
