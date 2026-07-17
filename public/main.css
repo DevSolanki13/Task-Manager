@@ -51,6 +51,10 @@
   /* rest */
   --backgroundColor: var(--grey-50);
   --textColor: var(--grey-1000);
+  --surfaceColor: var(--white);
+  --surfaceAltColor: var(--grey-50);
+  --borderColor: var(--grey-300);
+  --mutedTextColor: var(--grey-600);
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
   --transition: 0.3s ease-in-out all;
@@ -76,6 +80,21 @@ body {
   font-family: var(--bodyFont);
   font-weight: 400;
   line-height: 1.75;
+}
+
+html.dark-theme {
+  color-scheme: dark;
+  --backgroundColor: #171717;
+  --textColor: #f3f4f6;
+  --surfaceColor: #202020;
+  --surfaceAltColor: #2a2a2a;
+  --borderColor: #3a3a3a;
+  --mutedTextColor: #a1a1aa;
+  --black: #2a2a2a;
+  --red-light: #3a1f23;
+  --red-dark: #fca5a5;
+  --green-light: #12261c;
+  --green-dark: #86efac;
 }
 
 p {
@@ -169,12 +188,28 @@ button.block {
   width: 100%;
 }
 
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-left: auto;
+  margin-bottom: 1rem;
+  background: var(--surfaceAltColor);
+  color: var(--textColor);
+}
+
+.theme-toggle:hover {
+  color: var(--textColor);
+  background: var(--surfaceAltColor);
+  opacity: 0.85;
+}
+
 /*************
      FORM 
 *************/
 form {
   width: 100%;
-  background: var(--white);
+  background: var(--surfaceColor);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   padding: 2rem 2.5rem;
@@ -191,9 +226,9 @@ textarea {
   width: 100%;
   padding: 0.375rem 0.75rem;
   border-radius: var(--borderRadius);
-  background: var(--grey-50);
+  background: var(--surfaceAltColor);
   border-color: transparent;
-  border: 1px solid var(--grey-300);
+  border: 1px solid var(--borderColor);
 }
 .form-row {
   margin-bottom: 1rem;
@@ -204,7 +239,7 @@ textarea {
 }
 
 ::placeholder {
-  color: var(--grey-600);
+  color: var(--mutedTextColor);
 }
 .form-alert {
   color: var(--red-dark);
@@ -298,7 +333,7 @@ form > :last-child {
   position: relative;
 }
 .form-loading::before {
-  background: var(--white);
+  background: var(--surfaceColor);
   position: absolute;
   content: '';
   height: 100%;
@@ -342,7 +377,7 @@ form > :last-child {
 }
 .single-task {
   padding: 1rem 2.5rem;
-  background: var(--white);
+  background: var(--surfaceColor);
   border-radius: var(--borderRadius);
   box-shadow: var(--shadow-2);
   transition: var(--transition);
